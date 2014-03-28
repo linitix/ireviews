@@ -1,0 +1,40 @@
+{
+    "name": "ireviews",
+    "version": "1.0.0",
+    "description": "iTunes store customer reviews fetcher.",
+    "os": [
+        "darwin",
+        "linux"
+    ],
+    "license": "MIT",
+    "author": "Ismael Gorissen <ismael.gorissen@linitix.com>",
+    "keywords": [
+        "Apple",
+        "iTunes",
+        "iTunes Store",
+        "Store",
+        "download",
+        "reviews",
+        "json",
+        "xml",
+        "xml to json"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git@bitbucket.org:linitixbackend/ireviews.git"
+    },
+    "bugs": {
+        "url": "https://bitbucket.org/linitixbackend/ireviews/issues",
+        "email": "ismael.gorissen@linitix.com"
+    },
+    "dependencies": {
+        "request": "^2.34.0",
+        "async": "^0.2.10",
+        "moment": "^2.5.1",
+        "xml2js": "^0.4.1",
+        "jsonschema": "^0.4.0",
+        "debug": "^0.7.4"
+    },
+    "homepage": "https://bitbucket.org/linitixbackend/ireviews",
+    "main": "./libs/index"
+}
