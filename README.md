@@ -67,6 +67,8 @@ The array that contains all reviews will have this structure :
         "author": "Michael Maher",
         "content": "Just downloaded this app tonight, the best 2.99 app that I purchased in a long time. The display, sound, quality and the cd library is killer.",
         "rating": 5,
+        "helpful_vote_count": 3,
+        "total_vote_count": 5,
         "application_version": "1.0",
         "updated": 1329186360
     }
@@ -90,6 +92,10 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Changes Log
+
+###### 1.0.1
+
+* add `helpful_vote_count` and `total_vote_count` attributes to the review object.
 
 ###### 1.0.0
 

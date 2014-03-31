@@ -160,6 +160,8 @@ function processingParsedData(parsedData, callback) {
                         author: item.author[0].name[0],
                         content: item.content[0]["_"],
                         rating: parseInt(item["im:rating"][0]),
+                        helpful_vote_count: parseInt(item["im:voteSum"][0]),
+                        total_vote_count: parseInt(item["im:voteCount"][0]),
                         application_version: item["im:version"][0],
                         updated: moment.utc(item.updated[0]).unix()
                     };
