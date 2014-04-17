@@ -35,7 +35,7 @@ var parameters = {
     countries_code: [ "ALPHA_2_ISO_COUNTRY_CODE" ]
 };
 
-var ireviews = new iReviews(parameters);
+var ireviews = new iReviews.Processor(parameters);
 
 ireviews.storeId = "APPLICATION_ITUNES_STORE_ID";
 ireviews.countriesCode = [ "ALPHA_2_ISO_COUNTRY_CODE" ];
@@ -93,7 +93,8 @@ ireviews.parse(function (err) {
                     "helpful_vote_count": 3,
                     "total_vote_count": 3,
                     "application_version": "1.1",
-                    "updated": 1330129380
+                    "updated": 1330129380,
+                    "country_code": "US"
                 }
             ],
             [
@@ -106,7 +107,8 @@ ireviews.parse(function (err) {
                     "helpful_vote_count": 3,
                     "total_vote_count": 3,
                     "application_version": "1.1",
-                    "updated": 1330129380
+                    "updated": 1330129380,
+                    "country_code": "US"
                 }
             ]
         ]
@@ -126,7 +128,8 @@ ireviews.parse(function (err) {
     "helpful_vote_count": 3,
     "total_vote_count": 3,
     "application_version": "1.1",
-    "updated": 1330129380
+    "updated": 1330129380,
+    "country_code": "US"
 }
 ```
 
@@ -134,7 +137,7 @@ ireviews.parse(function (err) {
 
 ### Class
 
-###### Class: IReviews([options])
+###### Class: Processor([options])
 
 * **options** : object with following parameters
 
@@ -144,6 +147,13 @@ ireviews.parse(function (err) {
     "countries_code": []
 }
 ```
+
+###### Class: InvalidParametersError([message, parameters])
+
+Useful when you need to verify if the returned error have an `InvalidParametersError` type.
+
+* **message** : error message
+* **parameters** : add data to the error instance
 
 ### Methods
 
@@ -228,6 +238,11 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Changes Log
+
+###### 2.0.1
+
+* Add (again) `country_code` attribute on a review object. Useful when using events.
+* Update README.
 
 ###### 2.0.0
 
