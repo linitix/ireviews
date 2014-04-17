@@ -1,14 +1,16 @@
 {
     "properties": {
-        "store_id": {
+        "storeId": {
             "type": "string",
             "required": true,
             "minLength": 1
         },
-        "country_code": {
-            "type": "string",
+        "countriesCode": {
+            "type": "array",
             "required": true,
-            "minLength": 2
+            "items": {
+                "type": "string"
+            }
         }
     }
 }
