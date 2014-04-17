@@ -1,6 +1,6 @@
 {
     "name": "ireviews",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "iTunes store customer reviews fetcher.",
     "os": [
         "darwin",
@@ -36,5 +36,5 @@
         "debug": "^0.7.4"
     },
     "homepage": "https://github.com/linitix/ireviews",
-    "main": "./libs/ireviews"
+    "main": "./libs/index"
 }
