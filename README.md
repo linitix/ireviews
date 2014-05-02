@@ -1,5 +1,7 @@
 # iReviews
 
+[![NPM version](https://badge.fury.io/js/ireviews.svg)](http://badge.fury.io/js/ireviews) [![Build Status](https://travis-ci.org/linitix/ireviews.svg?branch=master)](https://travis-ci.org/linitix/ireviews) [![Dependency Status](https://david-dm.org/linitix/ireviews.svg)](https://david-dm.org/linitix/ireviews)
+
 iTunes store customer reviews fetcher.
 
 ## Dependencies
@@ -224,37 +226,3 @@ ireviews.on("review", function (review) {
 	console.log(review);
 });
 ```
-
-## License
-
-The MIT License (MIT)
-
-Copyright (c) 2014 [Linitix](http://www.linitix.com/)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-## Changes Log
-
-###### 2.0.1
-
-* Add (again) `country_code` attribute on a review object. Useful when using events.
-* Update README.
-
-###### 2.0.0
-
-* Use of events.
-* Update schema.
-* Update `package.json`.
-* Update README.
-
-###### 1.0.1
-
-* add `helpful_vote_count` and `total_vote_count` attributes to the review object.
-
-###### 1.0.0
-
-* module creation.
