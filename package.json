@@ -28,12 +28,12 @@
         "email": "nodemodules-issues@linitix.com"
     },
     "dependencies": {
-        "request": "^2.34.0",
-        "async": "^0.2.10",
-        "moment": "^2.5.1",
-        "xml2js": "^0.4.1",
+        "debug": "^0.8.1",
         "jsonschema": "^0.4.0",
-        "debug": "^0.7.4"
+        "async": "^0.8.0",
+        "request": "^2.34.0",
+        "moment": "^2.6.0",
+        "xml2js": "^0.4.2"
     },
     "homepage": "https://github.com/linitix/ireviews",
     "main": "./libs/index"
