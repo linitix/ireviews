@@ -1,6 +1,6 @@
 {
     "name": "ireviews",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "iTunes store customer reviews fetcher.",
     "os": [
         "darwin",
