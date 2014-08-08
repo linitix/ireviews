@@ -1,5 +1,10 @@
 # Changes Log
 
+###### 2.0.3
+
+* update third party modules
+* return all reviews in one array
+
 ###### 2.0.2
 
 * update README with badges

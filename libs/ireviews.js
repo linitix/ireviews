@@ -128,7 +128,7 @@ function downloadAllReviewsForCountry(self, storeId, countryCode, callback) {
     var reviews = {
         count: 0,
         countryCode: countryCode,
-        pages: []
+        items: []
     };
 
     async.whilst(
@@ -162,7 +162,10 @@ function downloadAllReviewsForCountry(self, storeId, countryCode, callback) {
 
                     if (result.length > 0) {
                         reviews.count += result.length;
-                        reviews.pages.push(result);
+
+                        result.forEach(function (item) {
+                            reviews.items.push(item);
+                        });
                     }
 
                     next();

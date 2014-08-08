@@ -84,35 +84,19 @@ ireviews.parse(function (err) {
 	{
     	"count": 100,
         "countryCode": "US",
-        "pages": [
-        	[
-            	{
-                    "id": "533332669",
-                    "title": "Help",
-                    "author": "DanBenedit1",
-                    "content": "I can't see my playlist after the update...",
-                    "rating": 1,
-                    "helpful_vote_count": 3,
-                    "total_vote_count": 3,
-                    "application_version": "1.1",
-                    "updated": 1330129380,
-                    "country_code": "US"
-                }
-            ],
-            [
-            	{
-                    "id": "533332669",
-                    "title": "Help",
-                    "author": "DanBenedit1",
-                    "content": "I can't see my playlist after the update...",
-                    "rating": 1,
-                    "helpful_vote_count": 3,
-                    "total_vote_count": 3,
-                    "application_version": "1.1",
-                    "updated": 1330129380,
-                    "country_code": "US"
-                }
-            ]
+        "items": [
+            {
+                "id": "533332669",
+                "title": "Help",
+                "author": "DanBenedit1",
+                "content": "I can't see my playlist after the update...",
+                "rating": 1,
+                "helpful_vote_count": 3,
+                "total_vote_count": 3,
+                "application_version": "1.1",
+                "updated": 1330129380,
+                "country_code": "US"
+            }
         ]
     }
 ]
