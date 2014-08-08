@@ -1,6 +1,6 @@
 {
     "name": "ireviews",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "iTunes store customer reviews fetcher.",
     "os": [
         "darwin",
@@ -28,11 +28,11 @@
         "email": "nodemodules-issues@linitix.com"
     },
     "dependencies": {
-        "debug": "^0.8.1",
-        "jsonschema": "^0.4.0",
-        "async": "^0.8.0",
-        "request": "^2.34.0",
-        "moment": "^2.6.0",
+        "async": "^0.9.0",
+        "debug": "^1.0.4",
+        "jsonschema": "^1.0.0",
+        "moment": "^2.8.1",
+        "request": "^2.40.0",
         "xml2js": "^0.4.2"
     },
     "homepage": "https://github.com/linitix/ireviews",
