@@ -82,7 +82,7 @@ ireviews.parse(function (err) {
 ```json
 [
 	{
-    	"count": 100,
+    	"count": 1,
         "countryCode": "US",
         "items": [
             {
