@@ -150,8 +150,12 @@ function downloadAllReviewsForCountry(self, storeId, countryCode, callback) {
                             data,
                             function (err, nextPageURL, entries) {
                                 if (err) return next(err);
+                                if (!nextPageURL) {
+                                    finished = true;
+                                    return next(null, entries);
+                                }
                                 if (nextPageURL.length == 0 || entries.length == 0) finished = true;
-                                if (nextPageURL.length > 0) url = nextPageURL;
+                                if (nextPageURL && nextPageURL.length > 0) url = nextPageURL;
 
                                 next(null, entries);
                             }
@@ -221,7 +225,10 @@ function parseXMLDataToJSON(data, callback) {
 
             if (result.feed.link && result.feed.link.length == 6) {
                 links = result.feed.link;
-                nextPageUrl = links[5]["$"].href;
+
+                debug("Links: %s", JSON.stringify(links));
+
+                nextPageUrl = links[5]["$"].href || "";
             }
             if (result.feed.entry && result.feed.entry.length > 1) entries = result.feed.entry;
 
