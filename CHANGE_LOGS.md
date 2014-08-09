@@ -1,9 +1,13 @@
 # Changes Log
 
+###### 2.1.0
+
+* retrieve next page url in Apple response instead of creating it
+* return all reviews in one array instead of pages of reviews
+
 ###### 2.0.3
 
 * update third party modules
-* return all reviews in one array
 
 ###### 2.0.2
 

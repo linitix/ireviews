@@ -11,8 +11,7 @@ var request = require("request");
 var Configurator = require("./configurator");
 var InvalidParametersError = require("../errors/invalid_parameters_error");
 
-var ITUNES_STORE_CUSTOMER_REVIEWS_URL =
-    "https://itunes.apple.com/__COUNTRYCODE__/rss/customerreviews/page=__COUNTER__/id=__APPSTOREID__/sortby=mostrecent/xml";
+var ITUNES_STORE_CUSTOMER_REVIEWS_URL = "https://itunes.apple.com/__COUNTRYCODE__/rss/customerreviews/id=__APPSTOREID__/sortby=mostrecent/xml";
 
 var schema = Configurator.loadSync("parameters_schema");
 var Validator = new jsonschema.Validator();
@@ -123,37 +122,44 @@ function downloadAllReviews(self, parameters, callback) {
 }
 
 function downloadAllReviewsForCountry(self, storeId, countryCode, callback) {
-    var counter = 0;
     var finished = false;
     var reviews = {
         count: 0,
         countryCode: countryCode,
         items: []
     };
+    var url = ITUNES_STORE_CUSTOMER_REVIEWS_URL;
+
+    url = url.replace("__COUNTRYCODE__", countryCode);
+    url = url.replace("__APPSTOREID__", storeId);
+
+    debug("URL: %s", url);
 
     async.whilst(
         function () {
             return !finished;
         },
         function (next) {
-            counter++;
-
             async.waterfall(
                 [
                     function (next) {
-                        downloadPageReviews(storeId, countryCode, counter, next)
+                        downloadPageReviews(url, next)
                     },
                     function (data, next) {
                         parseXMLDataToJSON(
                             data,
-                            function (err, result) {
-                                if (err) return callback(err);
-                                if (!result) finished = true;
-                                next(null, result);
+                            function (err, nextPageURL, entries) {
+                                if (err) return next(err);
+                                if (nextPageURL.length == 0 || entries.length == 0) finished = true;
+                                if (nextPageURL.length > 0) url = nextPageURL;
+
+                                next(null, entries);
                             }
                         );
                     },
                     function (parsedData, next) {
+                        if (parsedData.length == 0) return next(null, parsedData);
+
                         processingParsedData(self, parsedData, countryCode, next);
                     }
                 ],
@@ -178,14 +184,7 @@ function downloadAllReviewsForCountry(self, storeId, countryCode, callback) {
     );
 }
 
-function downloadPageReviews(storeId, countryCode, page, callback) {
-    var url = ITUNES_STORE_CUSTOMER_REVIEWS_URL.replace("__COUNTRYCODE__", countryCode);
-
-    url = url.replace("__COUNTER__", page);
-    url = url.replace("__APPSTOREID__", storeId);
-
-    debug("URL: %s", url);
-
+function downloadPageReviews(url, callback) {
     request.get(
         url,
         function (err, res, body) {
@@ -196,7 +195,7 @@ function downloadPageReviews(storeId, countryCode, page, callback) {
                     callback(null, body);
                     break;
                 case 403:
-                    debug("HTTP status code (%d) returned by Apple service", res.statusCode)
+                    debug("HTTP status code (%d) returned by Apple service", res.statusCode);
                     callback(null, null);
                     break;
                 default:
@@ -215,8 +214,20 @@ function parseXMLDataToJSON(data, callback) {
         data,
         function (err, result) {
             if (err) return callback(err);
+
+            var entries = [];
+            var links = result.feed.link;
+            var nextPageUrl = "";
+
+            if (result.feed.link && result.feed.link.length == 6) {
+                links = result.feed.link;
+                nextPageUrl = links[5]["$"].href;
+            }
             if (result.feed.entry && result.feed.entry.length > 1) entries = result.feed.entry;
-            callback(null, entries);
+
+            debug("Next page URL: %s", nextPageUrl);
+
+            callback(null, nextPageUrl, entries);
         }
     );
 }
