@@ -1,5 +1,9 @@
 # Changes Log
 
+###### 2.1.1
+
+* Fix issue with undefined nextPageURL
+
 ###### 2.1.0
 
 * retrieve next page url in Apple response instead of creating it
