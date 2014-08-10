@@ -12,6 +12,7 @@ iTunes store customer reviews fetcher.
 * [jsonschema](https://www.npmjs.org/package/jsonschema) : A fast and easy to use JSON schema validator.
 * [debug](https://www.npmjs.org/package/debug) : Small debugging utility.
 * [xml2js](https://www.npmjs.org/package/xml2js) : Simple XML to JavaScript object converter.
+* [temporal](https://www.npmjs.org/package/temporal) : Non-blocking, temporal task sequencing.
 
 ## Features
 
@@ -19,6 +20,8 @@ iTunes store customer reviews fetcher.
 * Automatic validation of all parameters.
 * Asynchronous reviews download.
 * Parse XML to JSON.
+* Choose a delay before each request.
+* Choose between XML or JSON for the response format (there is an update date for all reviews in XML format).
 * Return an enhance version of the structure (array of reviews).
 
 ## Installation
@@ -34,22 +37,26 @@ var iReviews = require("ireviews");
 
 var parameters = {
 	store_id: "APPLICATION_ITUNES_STORE_ID",
-    countries_code: [ "ALPHA_2_ISO_COUNTRY_CODE" ]
+	countries_code: [ "ALPHA_2_ISO_COUNTRY_CODE" ],
+	delay: 100, // millisecond
+	format: "json" // JSON format by default
 };
 
 var ireviews = new iReviews.Processor(parameters);
 
 ireviews.storeId = "APPLICATION_ITUNES_STORE_ID";
 ireviews.countriesCode = [ "ALPHA_2_ISO_COUNTRY_CODE" ];
+ireviews.delay = 100;
+ireviews.format = "xml";
 
 // ============= WITHOUT EVENTS
 
 ireviews.listAll(
-	parameters,
-    function (err, reviews) {
-    	if (err) return console.log(err);
-        console.log(reviews);
-    }
+	parameters, // not needed if already set before calling this method
+	function (err, reviews) {
+		if (err) return console.log(err);
+			console.log(reviews);
+	}
 );
 
 // ============= WITH EVENTS
@@ -94,7 +101,7 @@ ireviews.parse(function (err) {
                 "helpful_vote_count": 3,
                 "total_vote_count": 3,
                 "application_version": "1.1",
-                "updated": 1330129380,
+                "updated": 1330129380, // Only with response in XML format
                 "country_code": "US"
             }
         ]
@@ -114,10 +121,23 @@ ireviews.parse(function (err) {
     "helpful_vote_count": 3,
     "total_vote_count": 3,
     "application_version": "1.1",
-    "updated": 1330129380,
+    "updated": 1330129380, // Only with response in XML format
     "country_code": "US"
 }
 ```
+
+## Examples
+
+I use the application [The Beatblaster](https://itunes.apple.com/us/app/the-beatblaster/id493081063?mt=8) with 7 countries as example. You can run one of these commands :
+
+* `npm run-script ex-beatblaster-xml-stream`
+* `npm run-script ex-beatblaster-delay-xml-stream`
+* `npm run-script ex-beatblaster-xml`
+* `npm run-script ex-beatblaster-delay-xml`
+* `npm run-script ex-beatblaster-json-stream`
+* `npm run-script ex-beatblaster-delay-json-stream`
+* `npm run-script ex-beatblaster-json`
+* `npm run-script ex-beatblaster-delay-json`
 
 ## API
 
@@ -130,7 +150,9 @@ ireviews.parse(function (err) {
 ```json
 {
 	"store_id": "",
-    "countries_code": []
+    "countries_code": [],
+    "delay": 1000,
+    "format": "json"
 }
 ```
 
