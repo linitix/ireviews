@@ -1,5 +1,9 @@
 # Changes Log
 
+###### 2.2.1
+
+* remove remaining `console.log(...)`
+
 ###### 2.2.0
 
 * add examples
