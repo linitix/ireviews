@@ -1,8 +1,18 @@
 # Changes Log
 
+###### 2.2.0
+
+* add examples
+* add a delay before each request (optional)
+* choose between `JSON` and `XML` format for the response (you can find an update date for all reviews in `XML` format)
+
+###### 2.1.2
+
+* fix issue when HTTP status code (403) returned by Apple service
+
 ###### 2.1.1
 
-* Fix issue with undefined nextPageURL
+* fix issue with undefined nextPageURL
 
 ###### 2.1.0
 
