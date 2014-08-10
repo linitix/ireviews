@@ -237,8 +237,6 @@ IReviews.prototype._downloadAllReviewsForCountry = function (storeId, countryCod
             );
         },
         function (err) {
-            console.log(reviews);
-
             callback(err, reviews);
         }
     );
