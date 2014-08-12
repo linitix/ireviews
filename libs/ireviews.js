@@ -350,7 +350,7 @@ function parseXMLDataToJSON(data, callback) {
             }
             if (result.feed.entry && result.feed.entry.length > 1) entries = result.feed.entry;
 
-            debug("Next page URL: %s", nextPageUrl);
+            debug("---> Next page URL: %s", nextPageUrl);
 
             callback(null, nextPageUrl, entries);
         }
@@ -371,7 +371,7 @@ function parseJSONData(data, callback) {
     }
     if (data.feed.entry && data.feed.entry.length > 1) entries = data.feed.entry;
 
-    debug("Next page URL: %s", nextPageUrl);
+    debug("---> Next page URL: %s", nextPageUrl);
 
     callback(null, nextPageUrl, entries);
 }
