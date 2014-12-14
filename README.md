@@ -1,5 +1,7 @@
 # iReviews
 
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/linitix/ireviews?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![NPM version](https://badge.fury.io/js/ireviews.svg)](http://badge.fury.io/js/ireviews) [![Build Status](https://travis-ci.org/linitix/ireviews.svg?branch=master)](https://travis-ci.org/linitix/ireviews) [![Dependency Status](https://david-dm.org/linitix/ireviews.svg)](https://david-dm.org/linitix/ireviews)
 
 iTunes store customer reviews fetcher.
