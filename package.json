@@ -1,53 +1,51 @@
 {
-    "name": "ireviews",
-    "version": "2.2.1",
-    "description": "iTunes store customer reviews fetcher.",
-    "license": "MIT",
-    "author": "Ismael Gorissen <ismael.gorissen@linitix.com>",
-    "mainteners": [
-        {
-            "name": "Ismael Gorissen",
-            "email": "ismael.gorissen@gmail.com"
-        }
-    ],
-    "keywords": [
-        "Apple",
-        "iTunes",
-        "iTunes Store",
-        "Store",
-        "download",
-        "reviews",
-        "json",
-        "xml",
-        "xml to json"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:linitix/ireviews.git"
-    },
-    "bugs": {
-        "url": "https://github.com/linitix/ireviews/issues",
-        "email": "nodemodules-issues@linitix.com"
-    },
-    "dependencies": {
-        "async": "^0.9.0",
-        "debug": "^1.0.4",
-        "jsonschema": "^1.0.0",
-        "moment": "^2.8.1",
-        "request": "^2.40.0",
-        "temporal": "^0.3.8",
-        "xml2js": "^0.4.2"
-    },
-    "homepage": "https://github.com/linitix/ireviews",
-    "main": "./libs/index",
-    "scripts": {
-        "ex-beatblaster-xml-stream": "DEBUG=* node ./examples/ex_beatblaster_xml_stream.js",
-        "ex-beatblaster-json-stream": "DEBUG=* node ./examples/ex_beatblaster_json_stream.js",
-        "ex-beatblaster-xml": "DEBUG=* node ./examples/ex_beatblaster_xml.js",
-        "ex-beatblaster-json": "DEBUG=* node ./examples/ex_beatblaster_json.js",
-        "ex-beatblaster-delay-xml-stream": "DEBUG=* node ./examples/ex_beatblaster_delay_xml_stream.js",
-        "ex-beatblaster-delay-json-stream": "DEBUG=* node ./examples/ex_beatblaster_delay_json_stream.js",
-        "ex-beatblaster-delay-xml": "DEBUG=* node ./examples/ex_beatblaster_delay_xml.js",
-        "ex-beatblaster-delay-json": "DEBUG=* node ./examples/ex_beatblaster_delay_json.js"
+  "name": "ireviews",
+  "version": "2.2.2",
+  "description": "iTunes store customer reviews fetcher.",
+  "license": "MIT",
+  "author": "Lenny Ticks <npm@linitix.com>",
+  "mainteners": [
+    {
+      "name": "Ismael Gorissen",
+      "email": "ismael.gorissen@gmail.com"
     }
+  ],
+  "keywords": [
+    "Apple",
+    "iTunes",
+    "iTunes Store",
+    "Store",
+    "download",
+    "reviews"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:linitix/ireviews.git"
+  },
+  "bugs": {
+    "url": "https://github.com/linitix/ireviews/issues"
+  },
+  "dependencies": {
+    "async": "^0.9.0",
+    "bunyan": "^1.2.3",
+    "debug": "^2.1.0",
+    "express": "^4.10.6",
+    "jsonschema": "^1.0.0",
+    "moment": "^2.8.4",
+    "request": "^2.51.0",
+    "temporal": "^0.3.8",
+    "xml2js": "^0.4.2"
+  },
+  "homepage": "https://github.com/linitix/ireviews",
+  "main": "./libs/index",
+  "scripts": {
+    "movist-xml-stream": "DEBUG=* node ./examples/movist_xml_stream.js",
+    "movist-json-stream": "DEBUG=* node ./examples/movist_json_stream.js",
+    "movist-xml": "DEBUG=* node ./examples/movist_xml.js",
+    "movist-json": "DEBUG=* node ./examples/movist_json.js",
+    "movist-delay-xml-stream": "DEBUG=* node ./examples/movist_delay_xml_stream.js",
+    "movist-delay-json-stream": "DEBUG=* node ./examples/movist_delay_json_stream.js",
+    "movist-delay-xml": "DEBUG=* node ./examples/movist_delay_xml.js",
+    "movist-delay-json": "DEBUG=* node ./examples/movist_delay_json.js"
+  }
 }
