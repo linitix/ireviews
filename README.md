@@ -1,18 +1,10 @@
 # iReviews
 
-[![NPM version](https://badge.fury.io/js/ireviews.svg)](http://badge.fury.io/js/ireviews) [![Build Status](https://travis-ci.org/linitix/ireviews.svg?branch=master)](https://travis-ci.org/linitix/ireviews) [![Dependency Status](https://david-dm.org/linitix/ireviews.svg)](https://david-dm.org/linitix/ireviews)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/linitix/ireviews?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+[![NPM version](https://badge.fury.io/js/ireviews.svg)](http://badge.fury.io/js/ireviews) [![Dependency Status](https://david-dm.org/linitix/ireviews.svg)](https://david-dm.org/linitix/ireviews)
 
 iTunes store customer reviews fetcher.
-
-## Dependencies
-
-* [async](https://www.npmjs.org/package/async) : Higher-order functions and common patterns for asynchronous code.
-* [request](https://www.npmjs.org/package/request) : Simplified HTTP request client.
-* [moment](https://www.npmjs.org/package/moment) : Parse, manipulate, and display dates.
-* [jsonschema](https://www.npmjs.org/package/jsonschema) : A fast and easy to use JSON schema validator.
-* [debug](https://www.npmjs.org/package/debug) : Small debugging utility.
-* [xml2js](https://www.npmjs.org/package/xml2js) : Simple XML to JavaScript object converter.
-* [temporal](https://www.npmjs.org/package/temporal) : Non-blocking, temporal task sequencing.
 
 ## Features
 
