@@ -1,5 +1,13 @@
 # Changes Log
 
+###### 2.2.2
+
+* update examples (use `Movist` instead of `The Beatblaster`)
+* `npm run-script xxx` will create a JSON file in the `tmp` folder
+* upgrade third party modules version
+* add gitter badge
+* remove TravisCI configuration file and badge
+
 ###### 2.2.1
 
 * remove remaining `console.log(...)`
