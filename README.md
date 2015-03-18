@@ -2,7 +2,11 @@
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/linitix/ireviews?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[![NPM version](https://badge.fury.io/js/ireviews.svg)](http://badge.fury.io/js/ireviews) [![Dependency Status](https://david-dm.org/linitix/ireviews.svg)](https://david-dm.org/linitix/ireviews)
+[![NPM version](https://img.shields.io/npm/v/ireviews.svg?style=flat-square)](http://badge.fury.io/js/ireviews)
+[![Dependency Status](https://img.shields.io/david/linitix/ireviews.svg?style=flat-square)](https://david-dm.org/linitix/ireviews)
+[![License](https://img.shields.io/npm/l/ireviews.svg?style=flat-square)]()
+[![NPM Downloads](https://img.shields.io/npm/dm/ireviews.svg?style=flat-square)]()
+[![Code Climate](https://img.shields.io/codeclimate/github/linitix/ireviews.svg?style=flat-square)](https://codeclimate.com/github/linitix/ireviews)
 
 iTunes store customer reviews fetcher.
 
