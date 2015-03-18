@@ -31,8 +31,7 @@ function IReviews(options) {
     this.countriesCode = options.countries_code || null;
     this.delay = options.delay || 0;
 
-    if (options.format)
-      this.format = options.format.toLowerCase();
+    if (options.format) { this.format = options.format.toLowerCase(); }
   }
 
   debug("storeId: " + this.storeId);
@@ -48,8 +47,7 @@ util.inherits(IReviews, EventEmitter);
 IReviews.prototype.parse = function (callback) {
   var self = this;
 
-  if (!self.storeId || !self.countriesCode)
-    return callback(new Error("All required parameters must be set"));
+  if (!self.storeId || !self.countriesCode) { return callback(new Error("All required parameters must be set")); }
 
   self._processingReviews();
 };
@@ -57,16 +55,14 @@ IReviews.prototype.parse = function (callback) {
 IReviews.prototype.listAll = function (parameters, callback) {
   var self = this;
 
-  if (typeof parameters === "function")
-    callback = parameters;
+  if (typeof parameters === "function") { callback = parameters; }
 
   if (typeof parameters === "object") {
     self.storeId = parameters.store_id;
     self.countriesCode = parameters.countries_code;
   }
 
-  if (!self.storeId || !self.countriesCode)
-    return callback(new Error("All required parameters must be set"));
+  if (!self.storeId || !self.countriesCode) { return callback(new Error("All required parameters must be set")); }
 
   self._processingReviews(callback);
 };
@@ -76,23 +72,17 @@ IReviews.prototype._processingReviews = function (callback) {
 
   async.waterfall(
     [
-      function (next) {
-        self._validateParameters(next);
-      },
-      function (next) {
-        self._downloadAllReviews(next);
-      }
+      function (next) { self._validateParameters(next); },
+      function (next) { self._downloadAllReviews(next); }
     ],
     function (err, result) {
       if (err) {
-        if (!callback)
-          return self.emit("error", err);
+        if (!callback) { return self.emit("error", err); }
 
         return callback(err);
       }
 
-      if (!callback)
-        return self.emit("end", result);
+      if (!callback) { return self.emit("end", result); }
 
       callback(null, result);
     }
@@ -104,8 +94,9 @@ IReviews.prototype._validateParameters = function (callback) {
   var result = Validator.validate({ storeId: self.storeId, countriesCode: self.countriesCode }, schema);
   var err = null;
 
-  if (result.errors.length > 0)
+  if (result.errors.length > 0) {
     err = new InvalidParametersError("Please enter all required parameters", result.errors);
+  }
 
   callback(err);
 };
@@ -117,36 +108,34 @@ IReviews.prototype._downloadAllReviews = function (callback) {
   async.eachSeries(
     self.countriesCode,
     function (countryCode, next) {
-      self._downloadAllReviewsForCountry(
-        self.storeId,
-        countryCode,
-        function (err, result) {
-          if (err) return next(err);
-          reviews.push(result);
-          next();
-        }
-      );
+      self._downloadAllReviewsForCountry(self.storeId, countryCode, function (err, result) {
+        if (err) { return next(err); }
+
+        reviews.push(result);
+
+        next();
+      });
     },
-    function (err) {
-      callback(err, reviews);
-    }
+    function (err) { callback(err, reviews); }
   );
 };
 
 IReviews.prototype._downloadAllReviewsForCountry = function (storeId, countryCode, callback) {
   var self = this;
   var finished = false;
-  var reviews = {
-    count      : 0,
-    countryCode: countryCode,
-    items      : []
-  };
+  var reviews = { count: 0, countryCode: countryCode, items: [] };
   var url = ITUNES_STORE_CUSTOMER_REVIEWS_URL.replace("__FORMAT__", self.format);
+  //var q = async.queue();
 
   url = url.replace("__COUNTRYCODE__", countryCode.toLowerCase());
   url = url.replace("__APPSTOREID__", storeId);
 
-  debug("URL: %s", url);
+  debug("URL: " + url);
+
+  //q.drain = function () {
+  //  debug("All reviews for country \"" + countryCode + "\" have been downloaded");
+  //  callback();
+  //};
 
   async.whilst(
     function () {
@@ -252,7 +241,7 @@ IReviews.prototype._processingXMLParsedData = function (parsedData, countryCode,
   var self = this;
   var reviews = [];
 
-  if (!parsedData) return callback(null, reviews);
+  if (!parsedData) { return callback(null, reviews); }
 
   parsedData.shift();
 
@@ -277,9 +266,7 @@ IReviews.prototype._processingXMLParsedData = function (parsedData, countryCode,
 
       callback();
     },
-    function (err) {
-      callback(err, reviews);
-    }
+    function (err) { callback(err, reviews); }
   );
 };
 
@@ -287,7 +274,7 @@ IReviews.prototype._processingJSONParsedData = function (parsedData, countryCode
   var self = this;
   var reviews = [];
 
-  if (!parsedData) return callback(null, reviews);
+  if (!parsedData) { return callback(null, reviews); }
 
   parsedData.shift();
 
@@ -311,34 +298,26 @@ IReviews.prototype._processingJSONParsedData = function (parsedData, countryCode
 
       callback();
     },
-    function (err) {
-      callback(err, reviews);
-    }
+    function (err) { callback(err, reviews); }
   );
 };
 
 function downloadPageReviews(url, callback) {
-  request.get(
-    {
-      url    : url,
-      headers: REQUEST_HEADERS
-    },
-    function (err, res, body) {
-      if (err) return callback(err);
+  request.get({ url: url, headers: REQUEST_HEADERS }, function (err, res, body) {
+    if (err) { return callback(err); }
 
-      switch (res.statusCode) {
-        case 200:
-          callback(null, body);
-          break;
-        case 403:
-          debug("HTTP status code (%d) returned by Apple service", res.statusCode);
-          callback(null, null);
-          break;
-        default:
-          callback(new Error("HTTP status code : " + res.statusCode));
-      }
+    switch (res.statusCode) {
+      case 200:
+        callback(null, body);
+        break;
+      case 403:
+        debug("HTTP status code (\"" + res.statusCode + "\") returned by Apple service");
+        callback(null, null);
+        break;
+      default:
+        callback(new Error("HTTP status code : " + res.statusCode));
     }
-  );
+  });
 }
 
 function parseXMLDataToJSON(data, callback) {
@@ -346,24 +325,22 @@ function parseXMLDataToJSON(data, callback) {
   var nextPageUrl = "";
   var links;
 
-  Parser.parseString(
-    data,
-    function (err, result) {
-      if (err) return callback(err);
+  Parser.parseString(data, function (err, result) {
+    if (err) { return callback(err); }
 
-      entries = [];
+    entries = [];
 
-      if (result.feed.link && result.feed.link.length == 6) {
-        links = result.feed.link;
-        nextPageUrl = links[ 5 ][ "$" ].href || "";
-      }
-      if (result.feed.entry && result.feed.entry.length > 1) entries = result.feed.entry;
-
-      debug("---> Next page URL: %s", nextPageUrl);
-
-      callback(null, nextPageUrl, entries);
+    if (result.feed.link && result.feed.link.length == 6) {
+      links = result.feed.link;
+      nextPageUrl = links[ 5 ][ "$" ].href || "";
     }
-  );
+
+    if (result.feed.entry && result.feed.entry.length > 1) { entries = result.feed.entry; }
+
+    debug("---> Next page URL: " + nextPageUrl);
+
+    callback(null, nextPageUrl, entries);
+  });
 }
 
 function parseJSONData(data, callback) {
@@ -378,9 +355,10 @@ function parseJSONData(data, callback) {
     nextPageUrl = links[ 5 ].attributes.href || "";
     nextPageUrl = nextPageUrl.replace("xml", RES_FORMAT.JSON);
   }
-  if (data.feed.entry && data.feed.entry.length > 1) entries = data.feed.entry;
 
-  debug("---> Next page URL: %s", nextPageUrl);
+  if (data.feed.entry && data.feed.entry.length > 1) { entries = data.feed.entry; }
+
+  debug("---> Next page URL: " + nextPageUrl);
 
   callback(null, nextPageUrl, entries);
 }
