@@ -1,7 +1,5 @@
 # iReviews
 
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/linitix/ireviews?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 [![NPM version](https://img.shields.io/npm/v/ireviews.svg?style=flat-square)](http://badge.fury.io/js/ireviews)
 [![Dependency Status](https://img.shields.io/david/linitix/ireviews.svg?style=flat-square)](https://david-dm.org/linitix/ireviews)
 [![License](https://img.shields.io/npm/l/ireviews.svg?style=flat-square)]()
@@ -9,6 +7,10 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/linitix/ireviews.svg?style=flat-square)](https://codeclimate.com/github/linitix/ireviews)
 
 iTunes store customer reviews fetcher.
+
+## Known issue
+
+It will happen that the number of reviews by country is different and it comes from Apple. Sometimes the request is OK (HTTP 200) with the first page of reviews but after an hour or a day the same request will return OK without reviews.
 
 ## Features
 
