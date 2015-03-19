@@ -1,5 +1,11 @@
 # Changes Log
 
+###### 2.3.0
+
+* add `lodash` module to shuffle the array of countries code
+* add default headers to each requests
+* update `_donwloadAllReviews` behavior (use a queue with 5 concurrent workers)
+
 ###### 2.2.2
 
 * update examples (use `Movist` instead of `The Beatblaster`)
