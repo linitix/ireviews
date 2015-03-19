@@ -8,12 +8,18 @@ var xml2js = require("xml2js");
 var moment = require("moment");
 var request = require("request");
 var temporal = require("temporal");
+var _ = require("lodash");
 
 var Configurator = require("./configurator");
 var InvalidParametersError = require("../errors/invalid_parameters_error");
 
 var ITUNES_STORE_CUSTOMER_REVIEWS_URL = "https://itunes.apple.com/__COUNTRYCODE__/rss/customerreviews/id=__APPSTOREID__/sortby=mostrecent/__FORMAT__";
-var REQUEST_HEADERS = { "User-Agent": "Mozilla/5.0", "followRedirect": false, "followAllRedirects": false };
+var REQUEST_HEADERS = {
+  "User-Agent"        : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36",
+  "followRedirect"    : false,
+  "followAllRedirects": false,
+  "Cache-Control"     : "no-cache, no-store"
+};
 var RES_FORMAT = { JSON: "json", XML: "xml" };
 
 var schema = Configurator.loadSync("parameters_schema");
@@ -101,22 +107,66 @@ IReviews.prototype._validateParameters = function (callback) {
   callback(err);
 };
 
+//IReviews.prototype._downloadAllReviewsSync = function (callback) {
+//  var self = this;
+//  var reviews = [];
+//
+//  self.countriesCode = _.shuffle(self.countriesCode);
+//
+//  async.eachSeries(
+//    self.countriesCode,
+//    function (countryCode, next) {
+//      self._downloadAllReviewsForCountry(self.storeId, countryCode, function (err, result) {
+//        if (err) { return next(err); }
+//
+//        reviews.push(result);
+//
+//        next();
+//      });
+//    },
+//    function (err) { callback(err, reviews); }
+//  );
+//};
+
 IReviews.prototype._downloadAllReviews = function (callback) {
   var self = this;
   var reviews = [];
+  var count = 0;
+  var q = async.queue(function (task, next) {
+    self._downloadAllReviewsForCountry(self.storeId, task.countryCode, function (err, result) {
+      if (err) { return next(err); }
 
-  async.eachSeries(
+      count += result.count;
+
+      reviews.push(result);
+
+      next();
+    });
+  }, 5);
+
+  q.drain = function () {
+    debug("All reviews have been downloaded (" + count + ")");
+    callback(null, reviews);
+  };
+
+  self.countriesCode = _.shuffle(self.countriesCode);
+
+  async.each(
     self.countriesCode,
     function (countryCode, next) {
-      self._downloadAllReviewsForCountry(self.storeId, countryCode, function (err, result) {
-        if (err) { return next(err); }
-
-        reviews.push(result);
+      q.push({ countryCode: countryCode }, function (err) {
+        if (err) {
+          q.kill();
+          return next(err);
+        }
 
         next();
       });
     },
-    function (err) { callback(err, reviews); }
+    function (err) {
+      if (err)
+        return callback(err);
+    }
   );
 };
 
@@ -125,17 +175,11 @@ IReviews.prototype._downloadAllReviewsForCountry = function (storeId, countryCod
   var finished = false;
   var reviews = { count: 0, countryCode: countryCode, items: [] };
   var url = ITUNES_STORE_CUSTOMER_REVIEWS_URL.replace("__FORMAT__", self.format);
-  //var q = async.queue();
 
   url = url.replace("__COUNTRYCODE__", countryCode.toLowerCase());
   url = url.replace("__APPSTOREID__", storeId);
 
   debug("URL: " + url);
-
-  //q.drain = function () {
-  //  debug("All reviews for country \"" + countryCode + "\" have been downloaded");
-  //  callback();
-  //};
 
   async.whilst(
     function () {
