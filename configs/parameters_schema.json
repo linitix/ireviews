@@ -2,8 +2,7 @@
     "properties": {
         "storeId": {
             "type": "string",
-            "required": true,
-            "minLength": 1
+            "required": true
         },
         "countriesCode": {
             "type": "array",
