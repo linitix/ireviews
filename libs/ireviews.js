@@ -206,7 +206,7 @@ IReviews.prototype._downloadAllReviewsForCountry = function (storeId, countryCod
                   data,
                   function (err, nextPageURL, entries) {
                     if (err) return next(err);
-                    if (!nextPageURL) {
+                    if (!nextPageURL || nextPageURL === url) {
                       finished = true;
                       return next(null, entries);
                     }
@@ -222,7 +222,7 @@ IReviews.prototype._downloadAllReviewsForCountry = function (storeId, countryCod
                   data,
                   function (err, nextPageURL, entries) {
                     if (err) return next(err);
-                    if (!nextPageURL) {
+                    if (!nextPageURL || nextPageURL === url) {
                       finished = true;
                       return next(null, entries);
                     }
