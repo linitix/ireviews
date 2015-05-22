@@ -1,13 +1,14 @@
 {
   "name": "ireviews",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "iTunes store customer reviews fetcher.",
   "license": "MIT",
   "author": "Lenny Ticks <npm@linitix.com>",
-  "mainteners": [
+  "contributors": [
     {
       "name": "Ismael Gorissen",
-      "email": "ismael.gorissen@gmail.com"
+      "email": "ismael.gorissen@gmail.com",
+      "url": "https://github.com/igorissen"
     }
   ],
   "keywords": [
