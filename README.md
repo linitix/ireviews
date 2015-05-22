@@ -22,6 +22,18 @@ It will happen that the number of reviews by country is different and it comes f
 * Choose between XML or JSON for the response format (there is an update date for all reviews in XML format).
 * Return an enhance version of the structure (array of reviews).
 
+## Changes log
+
+See [changes log](CHANGES_LOG).
+
+## Contributors
+
+See [contributors](https://github.com/linitix/ireviews/graphs/contributors).
+
+## License
+
+See [license](LICENSE).
+
 ## Installation
 
 ```
@@ -126,16 +138,16 @@ ireviews.parse(function (err) {
 
 ## Examples
 
-I use the application [The Beatblaster](https://itunes.apple.com/us/app/the-beatblaster/id493081063?mt=8) with 7 countries as example. You can run one of these commands :
+I use the application [MOVIST - Your Personal Movie List](https://itunes.apple.com/us/app/movist-your-personal-movie/id840784742?mt=8) with 7 countries as example. You can run one of these commands :
 
-* `npm run-script ex-beatblaster-xml-stream`
-* `npm run-script ex-beatblaster-delay-xml-stream`
-* `npm run-script ex-beatblaster-xml`
-* `npm run-script ex-beatblaster-delay-xml`
-* `npm run-script ex-beatblaster-json-stream`
-* `npm run-script ex-beatblaster-delay-json-stream`
-* `npm run-script ex-beatblaster-json`
-* `npm run-script ex-beatblaster-delay-json`
+* `npm run-script movist-xml-stream`
+* `npm run-script movist-delay-xml-stream`
+* `npm run-script movist-xml`
+* `npm run-script movist-delay-xml`
+* `npm run-script movist-json-stream`
+* `npm run-script movist-delay-json-stream`
+* `npm run-script movist-json`
+* `npm run-script movist-delay-json`
 
 ## API
 

@@ -1,4 +1,8 @@
-# Changes Log
+###### 2.3.1
+
+* update outdated packages
+* merge pull request to fix an issue with infinite loop when next link is the current link
+* update examples scripts
 
 ###### 2.3.0
 
