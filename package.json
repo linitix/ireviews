@@ -27,16 +27,16 @@
     "url": "https://github.com/linitix/ireviews/issues"
   },
   "dependencies": {
-    "async": "^1.0.0",
-    "bunyan": "^1.3.5",
+    "async": "^1.5.2",
+    "bunyan": "^1.8.0",
     "debug": "^2.2.0",
-    "express": "^4.12.4",
-    "jsonschema": "^1.0.1",
-    "lodash": "^3.9.1",
-    "moment": "^2.10.3",
-    "request": "^2.55.0",
-    "temporal": "^0.4.0",
-    "xml2js": "^0.4.8"
+    "express": "^4.13.4",
+    "jsonschema": "^1.1.0",
+    "lodash": "^3.10.1",
+    "moment": "^2.12.0",
+    "request": "^2.71.0",
+    "temporal": "^0.4.1",
+    "xml2js": "^0.4.16"
   },
   "homepage": "https://github.com/linitix/ireviews",
   "main": "./libs/index",
